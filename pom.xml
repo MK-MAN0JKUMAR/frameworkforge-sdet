@@ -27,7 +27,7 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <!-- Test Execution -->
-        <suiteXml>src/test/resources/suites/smoke.xml</suiteXml>
+        <suiteXml>src/test/resources/suites/master.xml</suiteXml>
         <screenshot.mode>file</screenshot.mode>
 
 
@@ -219,7 +219,7 @@
         <profile>
             <id>ci</id>
             <properties>
-                <suiteXml>src/test/resources/suites/smoke.xml</suiteXml>
+                <suiteXml>src/test/resources/suites/sanity.xml</suiteXml>
                 <screenshot.mode>base64</screenshot.mode>
             </properties>
         </profile>

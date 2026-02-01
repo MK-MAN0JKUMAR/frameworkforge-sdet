@@ -27,11 +27,14 @@ public class BaseTestClass {
 		properties = loadConfig();
 
 		WebDriver driver = DriverFactory.createInstance(browser);
+		logger.info("Browser launched: {}", browser);
 		DriverManager.setDriver(driver);
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		driver.manage().window().maximize();
 		driver.get(properties.getProperty("base.url"));
+		logger.info("Navigated to: {}", properties.getProperty("base.url"));
+
 	}
 
 	@AfterMethod(alwaysRun = true)
@@ -40,6 +43,7 @@ public class BaseTestClass {
 		if (driver != null) {
 			driver.quit();
 			DriverManager.unload();
+			logger.info("Browser closed");
 		}
 	}
 

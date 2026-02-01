@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="RegressionSuite" parallel="tests" thread-count="5">
+<suite name="SanitySuite" parallel="tests" thread-count="5">
 
     <parameter name="browser" value="chrome"/>
 
-    <test name="RegressionTests">
+    <test name="SanityTests">
         <groups>
             <run>
                 <include name="sanity"/>
