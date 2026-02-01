@@ -1,0 +1,35 @@
+# Maven
+target/
+*.log
+
+
+# Reports & runtime artifacts
+test-output/
+reports/
+screenshots/
+logs/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+
+# Env
+.env
+
+# Node (future Playwright / tools)
+node_modules/
+
+# Docker
+*.tar
+
+# CI
+jenkins-workspace/
