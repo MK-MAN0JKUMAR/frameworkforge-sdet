@@ -3,7 +3,6 @@ pipeline {
 
     options {
         timestamps()
-        ansiColor('xterm')
         buildDiscarder(logRotator(numToKeepStr: '10'))
     }
 
@@ -49,19 +48,11 @@ pipeline {
                 """
             }
         }
-
-        stage('Archive Reports') {
-            when {
-                always()
-            }
-            steps {
-                archiveArtifacts artifacts: 'test-results/**/*', allowEmptyArchive: true
-            }
-        }
     }
 
     post {
         always {
+            archiveArtifacts artifacts: 'test-results/**/*', allowEmptyArchive: true
             echo "Build finished. Reports archived."
         }
 
