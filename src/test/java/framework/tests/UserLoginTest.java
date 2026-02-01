@@ -11,6 +11,7 @@ public class UserLoginTest extends BaseTestClass {
 
 	@Test(groups = "smoke")
 	public void userShouldLoginSuccessfully() {
+		logger.info("Executing test: userShouldLoginSuccessfully...");
 
 		String email = properties.getProperty("smoke.user.email");
 		String password = properties.getProperty("smoke.user.password");
@@ -18,11 +19,15 @@ public class UserLoginTest extends BaseTestClass {
 		UserLoginPage login = new UserLoginPage();
 		Assert.assertTrue(login.isAt(), "Login page not loaded");
 
+		logger.info("Login test started");
 		login.login(email, password);
+		logger.info("User logged in successfully");
+
 
 		MyHomePage home = new MyHomePage();
 		Assert.assertTrue(home.isLoaded(), "Login failed");
 
 		home.logout();
+		logger.info("Executed test Successfully: userShouldLoginSuccessfully...");
 	}
 }

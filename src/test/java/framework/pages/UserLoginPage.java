@@ -29,8 +29,13 @@ public class UserLoginPage extends BasePageObjects {
 
 	public void login(String user, String pwd) {
 		type(email, user);
+		log.info("Entering email: {}", email);
+
 		type(password, pwd);
+		log.info("Entering email: {}", password);
+
 		click(loginBtn);
+		log.info("Clicking login button");
 	}
 
 	public boolean isLoginErrorVisible() {
