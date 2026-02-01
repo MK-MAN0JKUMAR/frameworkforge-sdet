@@ -35,16 +35,16 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'mvn -version'
-                sh 'mvn clean compile -DskipTests'
+                bat 'mvn -version'
+                bat 'mvn clean compile -DskipTests'
             }
         }
 
         stage('Test Execution') {
             steps {
-                sh """
-                mvn clean test \
-                -P${params.TEST_PROFILE} \
+                bat """
+                mvn clean test ^
+                -P${params.TEST_PROFILE} ^
                 -Dbrowser=${params.BROWSER}
                 """
             }
