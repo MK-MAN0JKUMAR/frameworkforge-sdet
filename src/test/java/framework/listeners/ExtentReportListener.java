@@ -21,6 +21,11 @@ public class ExtentReportListener implements ITestListener {
     public void onTestStart(ITestResult result) {
         ExtentTest extentTest = extent.createTest(result.getMethod().getMethodName());
         test.set(extentTest);
+
+
+        if (result.getMethod().getCurrentInvocationCount() > 1) {
+            extentTest.warning("Test passed after retry");
+        }
     }
 
     @Override
@@ -53,4 +58,5 @@ public class ExtentReportListener implements ITestListener {
                 System.getProperty("enable.report", "true")
         );
     }
+
 }
