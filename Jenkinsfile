@@ -13,7 +13,7 @@ pipeline {
     parameters {
         choice(
             name: 'TEST_PROFILE',
-            choices: ['local', 'sanity', 'regression', 'ci'],
+            choices: ['smoke', 'sanity', 'regression', 'master'],
             description: 'Maven profile to run'
         )
 

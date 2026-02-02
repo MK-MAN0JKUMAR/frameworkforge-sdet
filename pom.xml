@@ -210,14 +210,14 @@
 
 
         <profile>
-            <id>local</id>
+            <id>smoke</id>
             <properties>
                 <suiteXml>src/test/resources/suites/smoke.xml</suiteXml>
             </properties>
         </profile>
 
         <profile>
-            <id>ci</id>
+            <id>sanity</id>
             <properties>
                 <suiteXml>src/test/resources/suites/sanity.xml</suiteXml>
                 <screenshot.mode>base64</screenshot.mode>
@@ -228,6 +228,14 @@
             <id>regression</id>
             <properties>
                 <suiteXml>src/test/resources/suites/regression.xml</suiteXml>
+            </properties>
+        </profile>
+
+
+        <profile>
+            <id>master</id>
+            <properties>
+                <suiteXml>src/test/resources/suites/master.xml</suiteXml>
             </properties>
         </profile>
 
