@@ -1,5 +1,6 @@
 package framework.tests;
 
+import framework.config.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -14,8 +15,6 @@ public class UserRegistrationTest extends BaseTestClass {
     public void userShouldRegisterSuccessfully() {
         logger.info("Executing test: userShouldRegisterSuccessfully...");
 
-        String password = properties.getProperty("smoke.user.password");
-
         UserLoginPage loginPage = new UserLoginPage();
         Assert.assertTrue(loginPage.isAt(), "Login page not loaded");
 
@@ -28,7 +27,7 @@ public class UserRegistrationTest extends BaseTestClass {
                 DataGenerator.alphabetic(5),
                 DataGenerator.alphanumeric(10) + "@gmail.com",
                 "9" + DataGenerator.numeric(9),
-                password,
+                ConfigReader.get("smoke.user.password"),
                 "Engineer"
         );
         logger.info("Registration completed successfully");

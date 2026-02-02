@@ -1,5 +1,6 @@
 package framework.tests;
 
+import framework.config.ConfigReader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -13,8 +14,8 @@ public class UserLoginTest extends BaseTestClass {
 	public void userShouldLoginSuccessfully() {
 		logger.info("Executing test: userShouldLoginSuccessfully...");
 
-		String email = properties.getProperty("smoke.user.email");
-		String password = properties.getProperty("smoke.user.password");
+		String email = ConfigReader.get("smoke.user.email");
+		String password = ConfigReader.get("smoke.user.password");
 
 		UserLoginPage login = new UserLoginPage();
 		Assert.assertTrue(login.isAt(), "Login page not loaded");
