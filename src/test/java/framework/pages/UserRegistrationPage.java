@@ -1,10 +1,24 @@
 package framework.pages;
 
+import framework.driver.DriverManager;
+import framework.utils.WaitUtil;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class UserRegistrationPage extends BasePageObjects {
+import java.time.Duration;
+
+public class UserRegistrationPage {
+
+    private static final Logger log = LogManager.getLogger(UserRegistrationPage.class);
+
+    public UserRegistrationPage() {
+        PageFactory.initElements(DriverManager.getDriver(), this);
+    }
 
     @FindBy(xpath = "//a[normalize-space()='Register']")
     private WebElement registerLink;
@@ -46,7 +60,7 @@ public class UserRegistrationPage extends BasePageObjects {
     private WebElement loginBtn;
 
     public void openRegistration() {
-        click(registerLink);
+        WaitUtil.click(registerLink, 10);
     }
 
     public void register(
@@ -57,18 +71,18 @@ public class UserRegistrationPage extends BasePageObjects {
             String pwd,
             String occupationValue) {
 
-        type(firstName, first);
-        type(lastName, last);
-        type(email, mail);
-        type(mobile, phone);
+        WaitUtil.type(firstName, first);
+        WaitUtil.type(lastName, last);
+        WaitUtil.type(email, mail);
+        WaitUtil.type(mobile, phone);
 
         new Select(occupation).selectByVisibleText(occupationValue);
 
-        click(male);
-        type(password, pwd);
-        type(confirmPassword, pwd);
-        click(ageCheckbox);
-        click(registerBtn);
+        WaitUtil.click(male);
+        WaitUtil.type(password, pwd);
+        WaitUtil.type(confirmPassword, pwd);
+        WaitUtil.click(ageCheckbox);
+        WaitUtil.click(registerBtn);
     }
 
     public boolean isSuccessMessageVisible() {
@@ -76,6 +90,6 @@ public class UserRegistrationPage extends BasePageObjects {
     }
 
     public void goToLogin() {
-        click(loginBtn);
+        WaitUtil.click(loginBtn, 10);
     }
 }

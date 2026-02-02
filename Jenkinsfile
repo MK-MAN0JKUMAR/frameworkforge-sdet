@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    triggers {
+        githubPush()
+    }
+    
     options {
         timestamps()
         buildDiscarder(logRotator(numToKeepStr: '10'))
