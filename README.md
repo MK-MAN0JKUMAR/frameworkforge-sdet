@@ -163,6 +163,3 @@ Next phase:
 Manoj Kumar
 SDET | Automation Engineer
 Java | Selenium | TestNG | CI/CD
-
----
-No shortcuts from here.
