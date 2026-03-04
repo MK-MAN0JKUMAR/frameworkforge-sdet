@@ -10,14 +10,8 @@ import org.testng.annotations.Test;
 
 public class UserLoginTest_DDT extends BaseTestClass {
 
-    @Test(
-            dataProvider = "loginExcelData",
-            dataProviderClass = DataProviders.class,
-            groups = {"regression"}
-    )
-    public void loginWithMultipleUsers(String email,
-                                       String password,
-                                       String expectedResult) {
+    @Test(dataProvider = "loginExcelData", dataProviderClass = DataProviders.class, groups = {"regression"})
+    public void loginWithMultipleUsers(String email, String password, String expectedResult) {
 
         UserLoginPage login = new UserLoginPage();
         login.login(email, password);
