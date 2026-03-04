@@ -69,3 +69,28 @@ pipeline {
         }
     }
 }
+
+
+
+/*
+Top-level structure
+pipeline {
+    agent any
+    options { ... }
+    parameters { ... }
+    environment { ... }
+    stages { ... }
+    post { ... }
+}
+
+
+| Section     | Purpose             |
+| ----------- | ------------------- |
+| agent       | Where pipeline runs |
+| options     | Global behavior     |
+| parameters  | Runtime inputs      |
+| environment | Env vars            |
+| stages      | Actual work         |
+| post        | Cleanup, reports    |
+
+*/

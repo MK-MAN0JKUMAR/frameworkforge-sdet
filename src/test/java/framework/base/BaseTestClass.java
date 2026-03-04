@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.time.Duration;
 import java.util.Properties;
 
+import framework.config.ConfigReader;
 import framework.utils.TestDataManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,46 +18,47 @@ import framework.driver.DriverManager;
 
 public class BaseTestClass {
 
-	protected Logger logger;
-	protected Properties properties;
+    protected Logger logger;
 
-	@BeforeMethod(alwaysRun = true)
-	@Parameters({"browser"})
-	public void setUp(String browser) {
-		logger = LogManager.getLogger(this.getClass());
-		properties = loadConfig();
+    @BeforeMethod(alwaysRun = true)
+    @Parameters({"browser"})
+    public void setUp(String browser) {
+        logger = LogManager.getLogger(this.getClass());
 
-		WebDriver driver = DriverFactory.createInstance(browser);
-		logger.info("Browser launched: {}", browser);
-		DriverManager.setDriver(driver);
+        WebDriver driver = DriverFactory.createInstance(browser);
+        DriverManager.setDriver(driver);
 
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		driver.manage().window().maximize();
-		driver.get(properties.getProperty("base.url"));
-		logger.info("Navigated to: {}", properties.getProperty("base.url"));
+        logger.info("Browser launched: {}", browser);
 
-	}
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().window().maximize();
 
-	@AfterMethod(alwaysRun = true)
-	public void tearDown() {
-		WebDriver driver = DriverManager.getDriver();
-		if (driver != null) {
-			driver.quit();
-			DriverManager.unload();
-			logger.info("Browser closed");
-		}
-	}
+        String baseUrl = ConfigReader.get("base.url");
+        driver.get(baseUrl);
+        logger.info("Navigated to: {}", baseUrl);
 
-	private Properties loadConfig() {
-		try (InputStream is = getClass().getClassLoader()
-				.getResourceAsStream("config/config.properties")) {
+    }
 
-			Properties p = new Properties();
-			p.load(is);
-			return p;
+    @AfterMethod(alwaysRun = true)
+    public void tearDown() {
+        WebDriver driver = DriverManager.getDriver();
+        if (driver != null) {
+            driver.quit();
+            DriverManager.unload();
+            logger.info("Browser closed");
+        }
+    }
 
-		} catch (Exception e) {
-			throw new RuntimeException("Unable to load config", e);
-		}
-	}
+    private Properties loadConfig() {
+        try (InputStream is = getClass().getClassLoader()
+                .getResourceAsStream("config/config.properties")) {
+
+            Properties p = new Properties();
+            p.load(is);
+            return p;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Unable to load config", e);
+        }
+    }
 }
