@@ -32,25 +32,23 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: 21
+          java-version: 17
           cache: maven
 
-      # Install Chrome
+      # Install stable Chrome
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
 
-      # Build project
-      - name: Build
-        run: mvn -B clean compile -DskipTests
-
-      # Run Selenium tests
-      - name: Run UI Tests
+      # Run tests (compile + test together)
+      - name: Run Selenium Tests
         run: |
-          mvn clean test \
+          mvn -B clean test \
           -P${{ matrix.profile }} \
           -Dbrowser=${{ matrix.browser }}
 
-      # Upload Test Results
+      # Upload Surefire results
       - name: Upload Test Results
         if: always()
         uses: actions/upload-artifact@v4
@@ -58,12 +56,13 @@ jobs:
           name: test-results-${{ matrix.profile }}
           path: target/surefire-reports
 
-      # Upload logs/screenshots
+      # Upload screenshots and logs
       - name: Upload Logs
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: logs-${{ matrix.profile }}
           path: |
+            test-results/**
             logs/**
             screenshots/**
