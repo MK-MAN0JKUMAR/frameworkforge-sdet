@@ -1,0 +1,92 @@
+FrameworkForge
+│
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── framework/
+│   │               ├── config
+│   │               │   └── ConfigReader.java
+│   │               │
+│   │               ├── driver
+│   │               │   ├── DriverFactory.java
+│   │               │   └── DriverManager.java
+│   │               │
+│   │               └── utils
+│   │                   ├── DataGenerator.java
+│   │                   ├── ExcelUtility.java
+│   │                   └── WaitUtil.java
+│   │
+│   │
+│   └── test/
+│       └── java/
+│           ├── framework/
+│           │       │
+│           │       ├── base
+│           │       │   └── BaseTestClass.java
+│           │       │
+│           │       ├── dataproviders
+│           │       │   └── DataProviders.java
+│           │       │
+│           │       ├── listeners
+│           │       │   ├── ExtentReportListener.java
+│           │       │   ├── RetryAnalyzer.java
+│           │       │   └── RetryTransformer.java
+│           │       │
+│           │       ├── pages
+│           │       │   ├── MyHomePage.java
+│           │       │   ├── UserLoginPage.java
+│           │       │   └── UserRegistrationPage.java
+│           │       │
+│           │       ├── report
+│           │       │   └── ExtentFactory.java
+│           │       │
+│           │       ├── tests
+│           │       │   ├── UserLoginTest.java
+│           │       │   ├── UserLoginTest_DDT.java
+│           │       │   └── UserRegistrationTest.java
+│           │       │
+│           │       └── utils
+│           │           ├── ScreenshotUtil.java
+│           │           └── TestDataManager.java
+│           │
+│           └── resources/
+│                   │
+│                   ├── config
+│                   │   └── config.properties
+│                   │
+│                   ├── META-INF/
+│                   │       └── services
+│                   │            │
+│                   │            ├── org.testng.IAnnotationTransformer
+│                   │            └── org.testng.ITestNGListener
+│                   │
+│                   ├── suites
+│                   │   ├── smoke.xml
+│                   │   ├── sanity.xml
+│                   │   ├── regression.xml
+│                   │   └── master.xml
+│                   │
+│                   ├── testdata
+│                   │   └── loginData.xlsx
+│                   │
+│                   └── log4j2.xml
+│
+├── test-results
+│   ├── reports
+│   │      └── ExtentReport_2026.03.04.16.30.24.html
+│   │
+│   ├── screenshots
+│   │      └── userShouldRegisterSuccessfully_2026.02.01.17.35.18.png
+│   │
+│   └── logs
+│          └── automation-2026-02-04.log
+│
+├── .github
+│       └── workflows
+│                 └── ui-tests.yml
+│
+├── Jenkinsfile
+├── docker-compose.yml
+├── Project Structure
+├── pom.xml
+└── README.md
